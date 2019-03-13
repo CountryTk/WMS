@@ -1,0 +1,1 @@
+'UpdateThread' object has no attribute 'nike_tooted'
