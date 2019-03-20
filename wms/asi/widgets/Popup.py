@@ -78,7 +78,7 @@ class Window(QWidget):
 
             window_pos = self.pos()
 
-            main_class.move_cursor(window_pos.x(), window_pos.y())
+           # main_class.move_cursor(window_pos)
 
             self.show()
         except AttributeError:
