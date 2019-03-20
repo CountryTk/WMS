@@ -4,6 +4,7 @@ from PyQt5.QtGui import QFont, QGuiApplication, QCursor
 import sys
 from widgets.View import View
 from widgets.EditorWindow import Window
+from resources.style import style
 
 
 class Main(QMainWindow):
@@ -99,4 +100,7 @@ if __name__ == '__main__':
 
     ex = Main(holder)
     ex.showMaximized()
+
+    ex.setStyleSheet(style)
+
     sys.exit(app.exec_())
