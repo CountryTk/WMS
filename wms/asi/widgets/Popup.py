@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame, QMainWindow
 from PyQt5.QtGui import QPixmap, QCursor, QScreen, QGuiApplication
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 import random
 from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
@@ -33,6 +33,10 @@ class Window(QWidget):
         self.pixmap = QPixmap(picture)
 
         self.label.setPixmap(self.pixmap)
+
+        self.timer = QTimer(self)
+
+        self.timer.timeout.connect(lambda: self.hide())
 
         self.hind_label = QLabel("<h3 style=\"color: #{}\">Meie hind: {} eurot</h3>".format("5B86E5", hind))
         self.kogus_label = QLabel(
@@ -79,6 +83,8 @@ class Window(QWidget):
             window_pos = self.pos()
 
            # main_class.move_cursor(window_pos)
+
+            self.timer.start(3500)
 
             self.show()
         except AttributeError:
