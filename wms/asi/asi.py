@@ -3,23 +3,29 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, qApp
 from PyQt5.QtGui import QFont, QGuiApplication, QCursor
 import sys
 from widgets.View import View
-from widgets.Welcome import Welcome
-from resources.style import blue
 from widgets.EditorWindow import Window
 
 
 class Main(QMainWindow):
-    def __init__(self):
+    def __init__(self, first_time):
         super().__init__()
 
         self.view = View(self)
 
+        self.first_time = first_time
+
+        if self.first_time:
+            self.setup_everything()
+
         self.refresh()
         self.input_data()
+        self.aruanne()
         self.init_ui()
 
-
         self.setCentralWidget(self.view)
+
+    def setup_everything(self):
+        pass
 
     def init_ui(self):
 
@@ -28,6 +34,15 @@ class Main(QMainWindow):
         fileMenu = menubar.addMenu("Tööriistad")
         fileMenu.addAction(self.refreshAct)
         fileMenu.addAction(self.inputAct)
+
+        createMenu = menubar.addMenu("Aruanne")
+        createMenu.addAction(self.aruandeAct)
+
+    def aruanne(self):
+        self.aruandeAct = QAction("Koosta aruanne")
+        self.aruandeAct.setStatusTip("Koosta aruanne")
+        self.aruandeAct.setShortcut("Ctrl+C")
+        self.aruandeAct.triggered.connect(lambda: print("Creating a report!"))
 
     def input_data(self):
 
@@ -58,18 +73,30 @@ class Main(QMainWindow):
 
         os.execl(sys.executable, sys.executable, *sys.argv)
 
-    def move_cursor(self, x, y):
+    def move_cursor(self, point):
 
         screen = QGuiApplication.primaryScreen()
 
         cursor = QCursor()
 
-        cursor.setPos(x, y)
+        # cursor.setPos(self.mapToGlobal(point))
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Main()
-    ex.setStyleSheet(blue)
+
+    try:
+        first_time_being_run = open("first_time.txt", "r")
+
+        if first_time_being_run.read():  # First time the program has been run
+            holder = True
+        else:
+            holder = False
+
+    except FileNotFoundError as E:
+        print(E)
+        holder = None
+
+    ex = Main(holder)
     ex.showMaximized()
     sys.exit(app.exec_())
