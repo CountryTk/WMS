@@ -1,6 +1,6 @@
 # WMS, ülesanne 2 
 
-# Ülesanne püstitus:
+# Ülesande püstitus:
 
 Create a warehouse management program that shows a clear overview of the products the store and the suppliers have and make connections between them (quantities, profits, losses etc)
 
