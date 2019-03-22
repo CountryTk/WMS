@@ -19,7 +19,7 @@ Create a warehouse management program that shows a clear overview of the product
 2. **When hovering over an item, useful infromation is showed.**
 ![alt_text](https://github.com/Fuchsiaff/Content/blob/master/Screenshot%202019-03-20%20at%2019.27.30.png?raw=true)
 
-3. **When clicking on an item, it shows its picture and some useful information.**
+3. **When clicking on an item, it shows its picture and some useful information. NOTE (The popup dissapears after 3.5 seconds)**
 ![alt_text](https://github.com/Fuchsiaff/Content/blob/master/Screenshot%202019-03-20%20at%2019.30.36.png?raw=true)
 
 4. **When pressing Ctrl+M or going to "Tööriistad" -> "Muuda andmeid" the contents of the database can be modified**
